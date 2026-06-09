@@ -86,9 +86,9 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(10,10,15,0.8);
+  background: rgba(255,255,255,0.92);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(108,99,255,0.1);
 }
 .nav-logo {
   font-family: 'DM Mono', monospace;
@@ -104,7 +104,7 @@ nav {
 }
 .nav-links a {
   font-size: 13px;
-  color: var(--text2);
+  color: #444466;
   text-decoration: none;
   letter-spacing: 0.5px;
   transition: color 0.2s;
@@ -136,6 +136,7 @@ nav {
   padding: 0 60px;
   position: relative;
   overflow: hidden;
+  background: #ffffff;
 }
 .hero-grid-bg {
   position: absolute;
@@ -181,12 +182,12 @@ nav {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(108,99,255,0.1);
-  border: 1px solid rgba(108,99,255,0.2);
+  background: rgba(108,99,255,0.08);
+  border: 1px solid rgba(108,99,255,0.3);
   border-radius: 100px;
   padding: 6px 16px;
   font-size: 12px;
-  color: var(--accent);
+  color: #5550cc;
   font-family: 'DM Mono', monospace;
   letter-spacing: 1px;
   margin-bottom: 32px;
@@ -210,6 +211,7 @@ nav {
   letter-spacing: -2px;
   margin-bottom: 16px;
   animation: fadeInUp 0.6s ease 0.1s both;
+  color: #0a0a1f;
 }
 .hero-name em {
   font-style: italic;
@@ -217,7 +219,7 @@ nav {
 }
 .hero-title {
   font-size: 18px;
-  color: var(--text2);
+  color: #444466;
   font-weight: 400;
   margin-bottom: 28px;
   animation: fadeInUp 0.6s ease 0.2s both;
@@ -234,13 +236,13 @@ nav {
 .stat-num {
   font-family: 'DM Serif Display', serif;
   font-size: 36px;
-  color: var(--text);
+  color: #0a0a1f;
   line-height: 1;
 }
 .stat-num span { color: var(--accent); }
 .stat-label {
   font-size: 12px;
-  color: var(--text3);
+  color: #8888aa;
   font-family: 'DM Mono', monospace;
   letter-spacing: 0.5px;
   margin-top: 4px;
@@ -307,17 +309,18 @@ nav {
 .orbit-center {
   position: absolute;
   inset: 100px;
-  background: linear-gradient(135deg, var(--surface), var(--bg3));
+  background: linear-gradient(135deg, #6c63ff, #5550cc);
   border-radius: 50%;
-  border: 1px solid var(--border);
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
-  color: var(--text2);
+  font-size: 13px;
+  color: white;
   font-family: 'DM Mono', monospace;
   text-align: center;
   line-height: 1.6;
+  font-weight: 600;
 }
 @keyframes spin {
   from { transform: rotate(0deg); }
@@ -325,14 +328,15 @@ nav {
 }
 .orbit-tag {
   position: absolute;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: #ffffff;
+  border: 1px solid #d0d4ee;
   border-radius: 20px;
   padding: 5px 12px;
   font-size: 11px;
   font-family: 'DM Mono', monospace;
-  color: var(--text2);
+  color: #444466;
   white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(108,99,255,0.1);
 }
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
@@ -870,7 +874,7 @@ footer p {
   align-items: center;
   gap: 12px;
   font-size: 12px;
-  color: var(--text3);
+  color: #8888aa;
   font-family: 'DM Mono', monospace;
   animation: fadeInUp 0.6s ease 1s both;
 }
@@ -1472,7 +1476,7 @@ footer p {
     <div class="section-label" style="justify-content:center">Get In Touch</div>
     <h2 class="section-title">Let's Build Something</h2>
     <p class="section-subtitle" style="margin:0 auto 0">
-      Open to Architect II / AI Engineer roles. Especially interested in enterprise AI, Agentic systems, and Microsoft ecosystem projects.
+      Focused on designing enterprise AI systems — Agentic AI, RAG architectures, and Microsoft ecosystem solutions that deliver measurable business impact.
     </p>
     <div class="contact-links">
       <a href="mailto:geetika.sharma2124@gmail.com" class="contact-btn">
@@ -1556,11 +1560,6 @@ terminalLines.forEach((line, i) => {
   }, 500 + i * 300);
 });
 
-
-  t.addEventListener('mouseleave', () => { t.style.transform='scale(1)'; t.style.borderColor='var(--border)'; });
-});
-
-
 // Video player
 const video = document.getElementById('ilVideo');
 const overlay = document.getElementById('videoOverlay');
@@ -1570,7 +1569,7 @@ if (video) {
   video.addEventListener('canplay', () => {
     if (overlay) overlay.style.display = 'none';
     if (speedControls) speedControls.style.display = 'flex';
-    video.playbackRate = 2.0; // default 2x speed
+    video.playbackRate = 2.0;
   });
   video.addEventListener('error', () => {
     if (overlay) overlay.style.display = 'flex';
@@ -1582,15 +1581,11 @@ function setSpeed(speed) {
     video.playbackRate = speed;
     ['s1','s2','s25'].forEach(id => {
       const btn = document.getElementById(id);
-      if (btn) btn.style.background = 'rgba(0,0,0,0.6)';
-      if (btn) btn.style.border = '1px solid rgba(255,255,255,0.2)';
+      if (btn) { btn.style.background = 'rgba(0,0,0,0.6)'; btn.style.border = '1px solid rgba(255,255,255,0.2)'; }
     });
-    const active = speed === 1 ? 's1' : speed === 2 ? 's2' : 's25';
-    const activeBtn = document.getElementById(active);
-    if (activeBtn) {
-      activeBtn.style.background = 'var(--accent)';
-      activeBtn.style.border = 'none';
-    }
+    const idMap = {1:'s1', 2:'s2', 2.5:'s25'};
+    const activeBtn = document.getElementById(idMap[speed]);
+    if (activeBtn) { activeBtn.style.background = 'var(--accent)'; activeBtn.style.border = 'none'; }
   }
 }
 
@@ -1607,9 +1602,11 @@ function openSS(i) {
   document.getElementById('lbCaption').textContent = ssDataNew[i].cap;
   lb.style.display = 'flex';
 }
+
 function closeLB() {
   document.getElementById('lightbox').style.display = 'none';
 }
+
 document.querySelectorAll('.ss-thumb').forEach(t => {
   t.addEventListener('mouseenter', () => {
     t.style.transform = 'scale(1.03)';
@@ -1620,7 +1617,6 @@ document.querySelectorAll('.ss-thumb').forEach(t => {
     t.style.borderColor = 'rgba(108,99,255,0.2)';
   });
 });
-
 </script>
 </body>
 </html>
