@@ -1122,7 +1122,7 @@ footer p {
         </video>
 
         <!-- Overlay when no video -->
-        <div id="videoOverlay" style="position:absolute;inset:0;background:linear-gradient(135deg,#0d0d20,#1a1a35);display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;cursor:pointer" onclick="openSite()">
+        <div id="videoOverlay" style="position:absolute;inset:0;background:linear-gradient(135deg,#0d0d20,#1a1a35);display:none;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;cursor:pointer" onclick="openSite()">
           <div style="width:64px;height:64px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:16px;box-shadow:0 0 40px rgba(108,99,255,0.5)">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
           </div>
@@ -1566,14 +1566,34 @@ const overlay = document.getElementById('videoOverlay');
 const speedControls = document.getElementById('speedControls');
 
 if (video) {
+  // Try to load video
+  video.load();
+  
   video.addEventListener('canplay', () => {
     if (overlay) overlay.style.display = 'none';
     if (speedControls) speedControls.style.display = 'flex';
     video.playbackRate = 2.0;
+    video.play().catch(() => {});
   });
-  video.addEventListener('error', () => {
+  
+  video.addEventListener('loadeddata', () => {
+    if (overlay) overlay.style.display = 'none';
+    video.playbackRate = 2.0;
+  });
+
+  video.addEventListener('error', (e) => {
+    console.log('Video error:', e);
     if (overlay) overlay.style.display = 'flex';
   });
+
+  // Check if video is already ready
+  if (video.readyState >= 3) {
+    if (overlay) overlay.style.display = 'none';
+    if (speedControls) speedControls.style.display = 'flex';
+    video.playbackRate = 2.0;
+  }
+} else {
+  if (overlay) overlay.style.display = 'flex';
 }
 
 function setSpeed(speed) {
